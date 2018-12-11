@@ -1,0 +1,37 @@
+<app-modal #signInModal>
+  <div>
+    <form class="login-form" [formGroup]="loginForm">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Username or Email"
+               formControlName="username" class="text-lowercase"
+               [ngClass]="{'hasError': loginForm.controls.username.dirty && loginForm.controls.username.errors}">
+      </mat-form-field>
+      <div class="formPropertiesValidations">
+        <div *ngIf="loginForm.controls.username.dirty">
+          <div class=" text-danger error"
+               maxlength="20"
+               *ngIf="loginForm.get('username').hasError('required')">
+            Username is required
+          </div>
+        </div>
+      </div>
+      <mat-form-field>
+        <input matInput placeholder="Password" formControlName="password"
+               [type]="password"
+               [ngClass]="{'hasError': loginForm.controls.password.dirty && loginForm.controls.password.errors}">
+      </mat-form-field>
+      <div class="formPropertiesValidations">
+        <div *ngIf="loginForm.controls.password.dirty">
+          <div class=" text-danger error"
+               *ngIf="loginForm.get('password').hasError('required')">
+            Password is required
+          </div>
+        </div>
+      </div>
+
+      <button mat-raised-button color="primary" [disabled]="!loginForm.valid"
+              (click)="login(loginForm.value)">Login
+      </button>
+    </form>
+  </div>
+</app-modal>

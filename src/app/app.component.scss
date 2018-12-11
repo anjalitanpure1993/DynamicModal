@@ -1,0 +1,46 @@
+.f-right {
+  float: right;
+}
+
+.f-left {
+  float: left;
+}
+
+mat-grid-tile {
+  background: #add8e6;
+}
+
+.orgList img {
+  height: 100px;
+  width: 120px;
+}
+
+.orgList .grid-tile {
+  text-align: center;
+}
+
+.header {
+  width: 100%;
+}
+
+.header .title {
+  font-weight: bold;
+  font-size: larger;
+}
+
+.header .auth-buttons {
+  margin-top: 20px;
+}
+
+.header .auth-buttons span {
+  font-weight: bold;
+}
+
+.auth-buttons button {
+  margin-right: 12px;
+}
+
+.orgList .org-title {
+  margin: 5px;
+  font-weight: bold;
+}

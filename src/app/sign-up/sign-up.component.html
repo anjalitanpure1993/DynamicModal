@@ -1,0 +1,101 @@
+<app-modal #signUpModal>
+  <form class="signup-form" [formGroup]="signUpForm" novalidate>
+    <div class="userName">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="First Name"
+               maxlength="20"
+               formControlName="firstName" required (input)="null"
+               [ngClass]="{'hasError': signUpForm.controls.firstName.dirty && signUpForm.controls.firstName.errors}">
+      </mat-form-field>
+      <div *ngIf="signUpForm.controls.firstName.dirty">
+        <div class=" text-danger error" style="width: 100%"
+             *ngIf="signUpForm.get('firstName').hasError('required')">
+          First name is required
+        </div>
+      </div>
+    </div>
+
+    <div class="userName">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Last Name"
+               maxlength="20"
+               formControlName="lastName" required (input)="null"
+               [ngClass]="{'hasError': signUpForm.controls.lastName.dirty && signUpForm.controls.lastName.errors}">
+      </mat-form-field>
+      <div *ngIf="signUpForm.controls.lastName.dirty">
+        <div class=" text-danger error" style="width: 100%"
+             *ngIf="signUpForm.get('lastName').hasError('required')">
+          Last name is required
+        </div>
+      </div>
+    </div>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Email" formControlName="email"
+             maxlength="254"
+             type="email" (input)="null" class="text-lowercase"
+             [ngClass]="{'hasError': signUpForm.controls.email.dirty && signUpForm.controls.email.errors}"
+             required>
+    </mat-form-field>
+    <div class="formPropertiesValidations">
+      <div *ngIf="signUpForm.controls.email.dirty">
+        <div class="text-danger error"
+             *ngIf="signUpForm.get('email').hasError('required')">
+          Email address is required
+        </div>
+        <div class=" text-danger error"
+             *ngIf="signUpForm.controls.email.touched &&
+                          signUpForm.get('email').hasError('validateEmail') &&
+                           !signUpForm.get('email').hasError('required')">
+          Invalid email address!
+        </div>
+      </div>
+    </div>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Username"
+             formControlName="username" required (input)="null"
+             maxlength="15" class="text-lowercase"
+             [ngClass]="{'hasError': signUpForm.controls.username.dirty && signUpForm.controls.username.errors}">
+    </mat-form-field>
+    <div class="formPropertiesValidations">
+      <div *ngIf="signUpForm.controls.username.dirty">
+        <div class=" text-danger error"
+             *ngIf="signUpForm.get('username').hasError('required')">
+          Username is required
+        </div>
+      </div>
+    </div>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Password" formControlName="password"
+             [type]="password"
+             [ngClass]="{'hasError': signUpForm.controls.password.dirty && signUpForm.controls.password.errors}"
+             required>
+    </mat-form-field>
+    <div class="formPropertiesValidations">
+      <div *ngIf="signUpForm.controls.password.dirty">
+        <div class=" text-danger error"
+             *ngIf="signUpForm.get('password').hasError('required')">
+          Password is required
+        </div>
+      </div>
+    </div>
+
+    <mat-form-field class="example-full-width" *ngIf="referralCode">
+      <input matInput placeholder="Referral Code"
+             formControlName="referralCode"
+             type="text" (input)="null" [(ngModel)]="referralCode"
+             readonly>
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="!signUpForm.valid"
+            (click)="register(signUpForm.value)">Create Account</button>
+  </form>
+  <div class="formLinks">
+    <ul>
+      <li><a [routerLink]="['/', {outlets: { modal: 'signIn' }}]"
+             replaceUrl i18n>Login</a>
+      </li>
+    </ul>
+  </div>
+</app-modal>
